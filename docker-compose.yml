@@ -8,8 +8,6 @@ services:
       - ./:/var/www/html
     environment:
       XDEBUG_CONFIG: remote_host=host.docker.internal
-    command:
-      bash -c "sudo chmod -R 777 ./*"
   db:
     container_name: newsweek-db
     image: mysql:latest
