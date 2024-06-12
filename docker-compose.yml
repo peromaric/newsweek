@@ -1,0 +1,25 @@
+services:
+  webserver:
+    container_name: newsweek
+    image: phpstorm/php-apache:8.2-xdebug3.2
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+    command:
+      bash -c "sudo chmod -R 777 ./*"
+  db:
+    container_name: newsweek-db
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: newsweek
+      MYSQL_USER: newsweek
+      MYSQL_PASSWORD: newsweek
+    restart: always
